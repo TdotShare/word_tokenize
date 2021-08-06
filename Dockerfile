@@ -1,9 +1,15 @@
-FROM python:3.9
+FROM python:3.9.6-slim-buster
 
-RUN pip install fastapi uvicorn pythainlp wheel
+RUN apt-get update && apt-get install -y python3-dev build-essential
 
-EXPOSE 80
+RUN mkdir -p /usr/src/tdot
+WORKDIR /usr/src/tdot
 
-COPY ./app /app
+COPY requirements.txt .
+RUN pip3 install -r requirements.txt
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+COPY . .
+
+EXPOSE 5000
+
+CMD ["uvicorn", "--host", "0.0.0.0", "--port", "5000", "main:app"]

@@ -1,6 +1,6 @@
 FROM python:3.9.6
 
-RUN pip install fastapi uvicorn pythainlp wheel
+RUN python -m pip install fastapi uvicorn pythainlp 
 
 EXPOSE 80
 

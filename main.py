@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pythainlp.tokenize import word_tokenize
+import uvicorn
 
 from pydantic import BaseModel
 
@@ -28,6 +29,9 @@ def tokenize(data: ResponseData):
         return {'status': 'error',
                 'bypass': False,
                 'message': 'Exception: ' + str(e)}
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="127.0.0.1", port=80)
 
 
 def unique(item):

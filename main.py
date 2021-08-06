@@ -30,9 +30,6 @@ def tokenize(data: ResponseData):
                 'bypass': False,
                 'message': 'Exception: ' + str(e)}
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=80)
-
 
 def unique(item):
     unique_list = []

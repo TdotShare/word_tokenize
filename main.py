@@ -40,6 +40,19 @@ def tokenize(data: ResponseData):
                 'bypass': False,
                 'message': 'Exception: ' + str(e)}
 
+@app.post("/api/word_tokenizes")
+def tokenize(data: ResponseData):
+    try:
+        tokens = word_tokenize(
+            text=data.text, engine="newmm", keep_whitespace=False)
+        return {'status': 'success',
+                'bypass': True,
+                'data': tokens}
+    except Exception as e:
+        return {'status': 'error',
+                'bypass': False,
+                'message': 'Exception: ' + str(e)}
+
 
 def unique(item):
     unique_list = []
